@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Open Mahoo/Rahoo App</title>
+  <script>
+    window.onload = function() {
+      // Extract query parameters from the URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const eventId = urlParams.get('id');
+      const city = urlParams.get('city');
+
+      // Replace with your app's deep link
+    //   myapp://events/eventDetails?id=Farsi%252520Class%252520Persian&city=Toronto
+      const deepLink = `myapp://events/eventDetails?id=${eventId}&city=${city}`;
+
+      // Links to your app in the App Store and Google Play
+      const appStoreLink = "https://apps.apple.com/app/mahoo"; // Replace with your App Store link
+      const playStoreLink = "https://play.google.com/store/apps/details?id=com.mahoo.app"; // Replace with your Google Play link
+
+      // Check the user agent to determine the device
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        // iOS device
+        window.location.href = deepLink;
+        setTimeout(function() {
+          window.location.href = appStoreLink; // Redirect to App Store if the app is not installed
+        }, 3500); // Adjust delay as needed
+      } else if (/android/i.test(userAgent)) {
+        // Android device
+        window.location.href = deepLink;
+        setTimeout(function() {
+          window.location.href = playStoreLink; // Redirect to Google Play if the app is not installed
+        }, 3500); // Adjust delay as needed
+      } else {
+        // Fallback for other platforms
+        document.getElementById("message").innerText = "Please open this link on your mobile device.";
+      }
+    };
+  </script>
+</head>
+<body>
+  <p id="message">Redirecting...</p>
+</body>
+</html>
