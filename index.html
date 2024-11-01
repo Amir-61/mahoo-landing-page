@@ -15,7 +15,12 @@
       // Replace with your app's deep link
       const deepLink = `myapp://events/eventDetails?id=${eventId}&city=${city}`;
 
-      document.getElementById("urlData").innerText = deepLink;
+      // Check if the deep link is constructed and update urlData
+      if (deepLink) {
+          document.getElementById("urlData").innerText = `Deep Link: ${deepLink}`;
+      } else {
+          document.getElementById("urlData").innerText = "Deep Link: None";
+      }
 
       // Links to your app in the App Store and Google Play
       const appStoreLink = "https://apps.apple.com/app/mahoo"; // Replace with your App Store link
