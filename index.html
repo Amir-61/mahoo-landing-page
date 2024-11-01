@@ -9,8 +9,10 @@
       const eventId = urlParams.get('id');
       const city = urlParams.get('city');
 
+      // Display the extracted values on the page for debugging
+      document.getElementById("debugInfo").innerText = `Extracted eventId: ${eventId || "None"}, city: ${city || "None"}`;
+
       // Replace with your app's deep link
-    //   myapp://events/eventDetails?id=Farsi%252520Class%252520Persian&city=Toronto
       const deepLink = `myapp://events/eventDetails?id=${eventId}&city=${city}`;
 
       // Links to your app in the App Store and Google Play
@@ -40,5 +42,7 @@
 </head>
 <body>
   <p id="message">Redirecting...</p>
+  <!-- Add a paragraph to display the debug information on the page -->
+  <p id="debugInfo" style="color: red;"></p>
 </body>
 </html>
